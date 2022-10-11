@@ -1,7 +1,7 @@
 import './ExpenseForm.css';
 import {useState} from "react";
 
-const ExpenseForm = ({onSaveExpenseData}) => {
+const ExpenseForm = ({onSaveExpenseData, onCancel, showNewExpense}) => {
     const buildClearState = () => ({
         enteredTitle: '',
         enteredAmount: 0,
@@ -28,12 +28,13 @@ const ExpenseForm = ({onSaveExpenseData}) => {
             amount: userInput.enteredAmount,
             date: new Date(userInput.enteredDate)
         }
-        onSaveExpenseData(expenseData)
+        onSaveExpenseData(expenseData);
+        onCancel();
         setUserInput(buildClearState())
 
     }
     return (
-        <form onSubmit={submitHandler}>
+        showNewExpense ? <form onSubmit={submitHandler}>
             <div className="new-expense__controls">
                 <div className="new-expense__control">
                     <label>Title</label>
@@ -49,9 +50,10 @@ const ExpenseForm = ({onSaveExpenseData}) => {
                 </div>
             </div>
             <div className="new-expense__actions">
+                <button type="button" onClick={onCancel}>Cancel</button>
                 <button type="submit">Add expense</button>
             </div>
-        </form>
+        </form> : ''
     )
 }
 export default ExpenseForm;
