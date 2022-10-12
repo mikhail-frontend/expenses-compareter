@@ -5,7 +5,7 @@ import {useState} from "react";
 
 const NewExpense = ({onSaveExpenseData}) => {
 
-    const [showNewExpense, onShowNewExpenseChanged] = useState(true);
+    const [showNewExpense, onShowNewExpenseChanged] = useState(false);
     const setShowNewExpenseVisible = () => onShowNewExpenseChanged(true);
     const setShowNewExpenseHidden = () => onShowNewExpenseChanged(false);
 
@@ -16,7 +16,6 @@ const NewExpense = ({onSaveExpenseData}) => {
                                             showNewExpense={showNewExpense}
             />}
             {!showNewExpense && <button onClick={setShowNewExpenseVisible}>Add new expense</button>}
-
 
         </div>
     )
